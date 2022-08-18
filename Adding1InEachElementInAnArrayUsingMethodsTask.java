@@ -5,9 +5,9 @@ public class Adding1InEachElementInAnArrayUsingMethodsTask {
         //Put an arr in main:
         int [] arrFinal = {1, 2, 3, 4, 5};
         //Save the array from method in main, so we can perform in main the printing:
-        int [] iFinal = addOne(arrFinal);
-        //print the final array we want to see the adding 1 in each one of the elements:
-        for (int j : iFinal){
+        int [] iInput = addOne(arrFinal);
+        //print the input array we want to see the adding 1 in each one of the elements:
+        for (int j : iInput){
             System.out.print(j + ",");
         }
         System.out.print(".");
