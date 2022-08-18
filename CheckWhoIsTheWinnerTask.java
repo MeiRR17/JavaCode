@@ -1,20 +1,27 @@
 public class CheckWhoIsTheWinnerTask {
     public static void main(String[] args) {
+        //write the situation using char matrix case.
         char [][] mainMatrix = {
                 {'X', 'O', 'X'},
                 {'X', 'X', 'O'},
                 {'O', 'X', 'O'}
         };
-        boolean bInput = xOrO(mainMatrix);
-        if(bInput){
+        //saved the method in main booleans and then print them.
+        boolean bInputPlayerX = xOrO(mainMatrix, 'X');
+        boolean bInputPlayerO = xOrO(mainMatrix, 'O');
+        if(bInputPlayerX){
+            //printed X player condition of winning.
             System.out.println("X player has won the game.");
-        }else if(!bInput){
+        }else if(bInputPlayerO){
+            //printed O player condition of winning.
             System.out.println("O player has won the game.");
         }else{
+            //printed the draw in else
             System.out.println("It is a draw, no one won the game.");
         }
     }
-    public static boolean xOrO (char [][] matrix){
+    //returned the condition to get the win or a draw.
+    public static boolean xOrO(char[][] matrix, char ignoredPlayer){
         //case number 1
         if(matrix[0][0]=='X'&&matrix[0][1]=='X'&&matrix[0][2]=='X'){
             return true;
@@ -44,10 +51,6 @@ public class CheckWhoIsTheWinnerTask {
                                     return true;
                                 }else
                                     //case number 8
-                                    if(matrix[0][0]=='X'&&matrix[1][1]=='X'&&matrix[2][2]=='X'){
-                                        return true;
-                                    }
-
-                                    return false;
+                                    return matrix[0][0] == 'X' && matrix[1][1] == 'X' && matrix[2][2] == 'X';
     }
 }
