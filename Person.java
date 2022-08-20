@@ -1,5 +1,5 @@
 public class Person {
-    String name;
+    static String name;
     int age;
     String city;
     String gender;
@@ -14,34 +14,34 @@ public class Person {
         obj2.city = "Pune";
         obj1.gender = "male";
         obj2.gender = "female";
-        System.out.println("obj1's name is: " + obj1.name + ".");
-        System.out.println("obj2's name is: " + obj2.name + ".");
+        System.out.println("obj1's name is: " + name + ".");
+        System.out.println("obj2's name is: " + name + ".");
         System.out.println("obj1's age is: " + obj1.age + ".");
         System.out.println("obj2's age is: " + obj2.age + ".");
         System.out.println("obj1's city is: " + obj1.city + ".");
         System.out.println("obj2's city is: " + obj2.city + ".");
         System.out.println("obj1's gender is: " + obj1.gender + ".");
         System.out.println("obj2's gender is: " + obj2.gender + ".");
-        obj1.eat();
-        obj2.eat();
-        obj1.study();
-        obj2.study();
-        obj1.sleep();
-        obj2.sleep();
-        obj1.play();
-        obj2.play();
+        eat();
+        eat();
+        study();
+        study();
+        sleep();
+        sleep();
+        play();
+        play();
 
     }
-    public void eat(){
+    public static void eat(){
         System.out.println(name + " is eating.");
     }
-    public void study(){
+    public static void study(){
         System.out.println(name + " is studying.");
     }
-    public void sleep(){
+    public static void sleep(){
         System.out.println(name + " is sleeping.");
     }
-    public void play(){
+    public static void play(){
         System.out.println(name + " is playing.");
     }
 }
