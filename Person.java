@@ -22,5 +22,26 @@ public class Person {
         System.out.println("obj2's city is: " + obj2.city + ".");
         System.out.println("obj1's gender is: " + obj1.gender + ".");
         System.out.println("obj2's gender is: " + obj2.gender + ".");
+        obj1.eat();
+        obj2.eat();
+        obj1.study();
+        obj2.study();
+        obj1.sleep();
+        obj2.sleep();
+        obj1.play();
+        obj2.play();
+
+    }
+    public void eat(){
+        System.out.println(name + " is eating.");
+    }
+    public void study(){
+        System.out.println(name + " is studying.");
+    }
+    public void sleep(){
+        System.out.println(name + " is sleeping.");
+    }
+    public void play(){
+        System.out.println(name + " is playing.");
     }
 }
