@@ -5,7 +5,17 @@ public class Person {
     int age;
     String city;
     String gender;
-    double balance = 0;
+    double balance;
+
+    //Added constructor.
+    public Person(){
+        name = "Unknown";
+        age = 0;
+        city = "Unknown";
+        gender = "Unknown";
+        balance = 0;
+
+    }
 
     //methods:
     //added object's doing.
@@ -41,6 +51,7 @@ public class Person {
         //created objects.
         Person obj1 = new Person();
         Person obj2 = new Person();
+        Person obj3 = new Person();
         //named them:
         obj1.name ="John";
         obj2.name = "Dessy";
@@ -55,12 +66,16 @@ public class Person {
         //printed:
         System.out.println("obj1's name is: " + obj1.name + ".");
         System.out.println("obj2's name is: " + obj2.name + ".");
+        System.out.println("obj3's name is: " + obj3.name + ".");
         System.out.println("obj1's age is: " + obj1.age + ".");
         System.out.println("obj2's age is: " + obj2.age + ".");
+        System.out.println("obj3's age is: " + obj3.age + ".");
         System.out.println("obj1's city is: " + obj1.city + ".");
         System.out.println("obj2's city is: " + obj2.city + ".");
+        System.out.println("obj3's city is: " + obj3.city + ".");
         System.out.println("obj1's gender is: " + obj1.gender + ".");
         System.out.println("obj2's gender is: " + obj2.gender + ".");
+        System.out.println("obj3's gender is: " + obj3.gender + ".");
 
         //set object's doing:
         obj1.eat();
