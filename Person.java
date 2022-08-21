@@ -14,7 +14,13 @@ public class Person {
         city = "Unknown";
         gender = "Unknown";
         balance = 0;
-
+    }
+    public Person(String name, int age, String city, String gender, double balance){
+    this.name = name;
+    this.age = age;
+    this.city = city;
+    this.gender = gender;
+    this.balance = balance;
     }
 
     //methods:
@@ -52,6 +58,7 @@ public class Person {
         Person obj1 = new Person();
         Person obj2 = new Person();
         Person obj3 = new Person();
+        Person obj4 = new Person("Jessy", 23, "Tel Aviv", "Male", 9021.2);
         //named them:
         obj1.name ="John";
         obj2.name = "Dessy";
@@ -76,6 +83,7 @@ public class Person {
         System.out.println("obj1's gender is: " + obj1.gender + ".");
         System.out.println("obj2's gender is: " + obj2.gender + ".");
         System.out.println("obj3's gender is: " + obj3.gender + ".");
+        System.out.println(obj4.name + " is a " + obj4.age + " " + obj4.gender + " man from " + obj4.city + " and his balance is: " + obj4.balance + "$.");
 
         //set object's doing:
         obj1.eat();
