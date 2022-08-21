@@ -61,7 +61,6 @@ public class Person {
         System.out.println("obj2's city is: " + obj2.city + ".");
         System.out.println("obj1's gender is: " + obj1.gender + ".");
         System.out.println("obj2's gender is: " + obj2.gender + ".");
-        System.out.println("current balance is: " + obj1.balance + ".");
 
         //set object's doing:
         obj1.eat();
@@ -81,5 +80,11 @@ public class Person {
         //printed objects' final balance:
         obj1.printBalance();
         obj2.printBalance();
+        //saved in main:
+        double d1 = obj1.getBalance();
+        double d2 = obj2.getBalance();
+        //printed it:
+        System.out.println("obj1's balance is: " + d1 + "$.");
+        System.out.println("obj2's balance is: " + d2 + "$.");
     }
 }
