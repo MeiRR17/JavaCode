@@ -1,11 +1,11 @@
 public class Person1 {
 
     //fields:
-    String name;
-    int age;
-    String city;
-    String gender;
-    double balance;
+    private String name;
+    private int age;
+    private String city;
+    private String gender;
+    private double balance;
 
     //Added constructor.
     public Person1(){
