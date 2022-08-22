@@ -1,11 +1,11 @@
 public class Person {
 
     //fields:
-    String name;
-    int age;
-    String city;
-    String gender;
-    double balance;
+    private String name;
+    private int age;
+    private String city;
+    private String gender;
+    private double balance;
 
     //Added constructor.
     public Person(){
@@ -51,6 +51,46 @@ public class Person {
     //method for returning value.
     public double getBalance (){
         return balance;
+    }
+
+
+
+    //setter
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    //getter
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getGender() {
+        return gender;
     }
 
     public static void main(String[] args) {
@@ -109,5 +149,7 @@ public class Person {
         //printed it:
         System.out.println("obj1's balance is: " + d1 + "$.");
         System.out.println("obj2's balance is: " + d2 + "$.");
+
+        //setting and getting
     }
 }
