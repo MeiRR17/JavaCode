@@ -7,11 +7,11 @@ public class PersonMain {
         Person1 obj2 = new Person1("Menachem", 23, "Tbilisi","Male", 2022);
 
         //changed using setter
-        obj1.name = "Shmulik";
-        obj1.age = 12;
-        obj1.city = "New York";
-        obj1.gender = "Male";
-        obj1.balance = 21;
+        obj1.setName("Shmulik");
+        obj1.setAge(12);
+        obj1.setCity("New York");
+        obj1.setGender("Male");
+        obj1.setBalance(21.22);
 
         //printed the objects using get methods
         System.out.println(obj1.getName() + " is a " + obj1.getAge() + " " + obj1.getGender() + " man from " + obj1.getCity() + " and his balance is: " + obj1.getBalance() + "$.");
