@@ -16,6 +16,9 @@ public class Animal {
         this.isVegetarian = isVegetarian;
         this.numberOfLegs = numberOfLegs;
     }
+    public String speak(){
+        return "Animal is speaking";
+    }
 
 
 

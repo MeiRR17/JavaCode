@@ -4,9 +4,11 @@ public class Cat extends Animal{
 
     public Cat(String name, boolean isVegetarian, int numberOfLegs, String breed, String color){
         super(name, isVegetarian, numberOfLegs);
+        this.breed = breed;
+        this.color = color;
     }
-    public void speak(){
-        System.out.println("meow meow cat says meow");
+    public String speak(){
+        return "meow meow cat says meow";
     }
 
     public String getBreed() {

@@ -4,9 +4,11 @@ public class Dog extends Animal{
 
     public Dog(String name, boolean isVegetarian, int numberOfLegs, String breed, String color){
         super(name, isVegetarian, numberOfLegs);
+        this.breed = breed;
+        this.color = color;
     }
-    public void speak(){
-        System.out.println("wauf wauf dog is barking");
+    public String speak(){
+        return "wauf wauf dog is barking";
     }
 
     public String getBreed() {
