@@ -1,4 +1,4 @@
-public class Animal {
+public abstract class Animal {
     private String name;
     private boolean isVegetarian;
     private int numberOfLegs;
@@ -16,9 +16,7 @@ public class Animal {
         this.isVegetarian = isVegetarian;
         this.numberOfLegs = numberOfLegs;
     }
-    public String speak(){
-        return "Animal is speaking";
-    }
+    public abstract String speak();
 
 
 

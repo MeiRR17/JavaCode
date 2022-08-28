@@ -10,6 +10,7 @@ public class Cat extends Animal{
     public String speak(){
         return "meow meow cat says meow";
     }
+//getters and setters:
 
     public String getBreed() {
         return breed;
@@ -26,4 +27,5 @@ public class Cat extends Animal{
     public void setColor(String color) {
         this.color = color;
     }
+
 }
