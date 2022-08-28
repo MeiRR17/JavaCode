@@ -1,14 +1,13 @@
-public class Dog extends Animal{
+interface JavaCode{
+    void dogSound();
+}
+public class Dog implements JavaCode{
     private String breed;
     private String color;
 
-    public Dog(String name, boolean isVegetarian, int numberOfLegs, String breed, String color){
-        super(name, isVegetarian, numberOfLegs);
-        this.breed = breed;
-        this.color = color;
-    }
-    public String speak(){
-        return "wauf wauf dog is barking";
+
+    public void speak(){
+        System.out.println("waif waif dog is barking");
     }
 
     public String getBreed() {
@@ -25,5 +24,9 @@ public class Dog extends Animal{
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public void dogSound() {
+        System.out.println("waif waif");
     }
 }

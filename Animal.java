@@ -16,7 +16,6 @@ public abstract class Animal {
         this.isVegetarian = isVegetarian;
         this.numberOfLegs = numberOfLegs;
     }
-    public abstract String speak();
 
 
 
@@ -45,3 +44,4 @@ public abstract class Animal {
         this.numberOfLegs = numberOfLegs;
     }
 }
+
