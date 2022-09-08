@@ -1,5 +1,8 @@
 public class Adding1InEachElementInAnArrayUsingMethodsTask {
     public static void main(String[] args) {
+
+        //see if git's working rn
+
         //print what you want to say without moving to the next line:
         System.out.println("Printing all the array but we will add one to each element: ");
         //Put an arr in main:
