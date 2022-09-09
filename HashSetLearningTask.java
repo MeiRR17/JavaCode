@@ -16,8 +16,6 @@ public class HashSetLearningTask {
         for (int i = 0; i < s.length(); i++) {
             hs.add(s.charAt(i));
         }
-        int size = hs.size();
-
-        return size;
+        return hs.size();
     }
 }
