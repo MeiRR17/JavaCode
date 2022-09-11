@@ -42,37 +42,25 @@ public class TicTacToeTask {
 
 
             while (true) {
-
-                System.out.println(" Current board:");
-                System.out.println();
-                printBoard(mainMatrix);
-                System.out.println("X player turn: ");
-                System.out.println("type an available number between 1 to 9");
-                move = in.nextInt();
-        if(!checkAvailablePosition(mainMatrix, move)){
-            System.out.println("Please use an available position to put your character in.");
-        continue;
-        }
-
-                if (move>0&&move<=9) {
-                    switch (move) {
-                        case 1: mainMatrix[0][0] = 'X';break;
-                        case 2: mainMatrix[0][1] = 'X';break;
-                        case 3: mainMatrix[0][2] = 'X';break;
-                        case 4: mainMatrix[1][0] = 'X';break;
-                        case 5: mainMatrix[1][1] = 'X';break;
-                        case 6: mainMatrix[1][2] = 'X';break;
-                        case 7: mainMatrix[2][0] = 'X';break;
-                        case 8: mainMatrix[2][1] = 'X';break;
-                        case 9: mainMatrix[2][2] = 'X';break;
+                if (turn) {
+                    System.out.println(" Current board:");
+                    System.out.println();
+                    printBoard(mainMatrix);
+                    System.out.println("X player turn: ");
+                    System.out.println("type an available number between 1 to 9");
+                    move = in.nextInt();
+                    if (!checkAvailablePosition(mainMatrix, move)) {
+                        System.out.println("Please use an available position to put your character in.");
+                        continue;
                     }
-                } else {
-                    System.out.println("Invalid number.");
-                    System.out.println("TRY AGAIN!");
-                    continue;
-                }
 
-                if (xOrO(mainMatrix, 'X')) {
+                    if (!numberPosition(mainMatrix, move, 'X')){
+                        System.out.println("Invalid number.");
+                        System.out.println("TRY AGAIN!");
+                        continue;
+                    }
+
+                    if (xOrO(mainMatrix, 'X')) {
                         printBoard(mainMatrix);
                         System.out.println("X player has won the game.");
                         break;
@@ -82,39 +70,24 @@ public class TicTacToeTask {
                     }
 
                     turn = false;
-
-                System.out.println(" Current board: ");
-                System.out.println();
-                printBoard(mainMatrix);
-                System.out.println("O player turn: ");
-                System.out.println("type an available number between 1 to 9");
-                move = in.nextInt();
-                if(!checkAvailablePosition(mainMatrix, move)){
-                    System.out.println("Please use an available position to put your character in.");
-                    continue;
-                }
-
-                if (move>0&&move<=9) {
-
-                    switch (move) {
-
-                        case 1: mainMatrix[0][0] = 'O';break;
-                        case 2: mainMatrix[0][1] = 'O';break;
-                        case 3: mainMatrix[0][2] = 'O';break;
-                        case 4: mainMatrix[1][0] = 'O';break;
-                        case 5: mainMatrix[1][1] = 'O';break;
-                        case 6: mainMatrix[1][2] = 'O';break;
-                        case 7: mainMatrix[2][0] = 'O';break;
-                        case 8: mainMatrix[2][1] = 'O';break;
-                        case 9: mainMatrix[2][2] = 'O';break;
-
+                } else {
+                    System.out.println(" Current board: ");
+                    System.out.println();
+                    printBoard(mainMatrix);
+                    System.out.println("O player turn: ");
+                    System.out.println("type an available number between 1 to 9");
+                    move = in.nextInt();
+                    if (!checkAvailablePosition(mainMatrix, move)) {
+                        System.out.println("Please use an available position to put your character in.");
+                        continue;
                     }
-                }else{
-                    System.out.println("Invalid number.");
-                    System.out.println("TRY AGAIN!");
-                    continue;
 
-                }
+
+                        if(!numberPosition(mainMatrix, move, 'O')){
+                        System.out.println("Invalid number.");
+                        System.out.println("TRY AGAIN!");
+                        continue;
+                    }
 
                     if (xOrO(mainMatrix, 'O')) {
                         printBoard(mainMatrix);
@@ -126,39 +99,8 @@ public class TicTacToeTask {
                     }
                     turn = true;
                 }
+            }
     }
-
-
-
-
-
-
-        //        if(start == "start" || start == "start".toUpperCase(Locale.ROOT)){
-//            System.out.println("X player turn:");
-//            System.out.println("type a available number between 1 to 9");
-//            if(turn==1){
-//        //        mainMatrix[0][0] == 'X';
-//            }
-//        }else{
-//            System.out.println("Seems like you guys are not ready yet... please write down start.");
-//
-//        }
-//
-//
-//        //saved the method in main booleans and then print them.
-//        boolean bInputPlayerX = xOrO(mainMatrix, 'X');
-//        boolean bInputPlayerO = xOrO(mainMatrix, 'O');
-//        if(bInputPlayerX){
-//            //printed X player condition of winning.
-//            System.out.println("X player has won the game.");
-//        }else if(bInputPlayerO){
-//            //printed O player condition of winning.
-//            System.out.println("O player has won the game.");
-//        }else{
-//            //printed the draw in else
-//            System.out.println("It is a draw, no one won the game.");
-//        }
-
     //returned the condition to get the win or a draw.
     public static boolean xOrO(char[][] matrix, char player){
         //case number 1
@@ -265,5 +207,32 @@ public class TicTacToeTask {
             }
             default: return true;
         }
+    }
+    public static boolean numberPosition (char[][] matrix, int move, char player){
+        if(move>0&&move<=9){
+            switch(move){
+                case 1: matrix[0][0] = player; return true;
+
+                case 2: matrix[0][1] = player; return true;
+
+                case 3: matrix[0][2] = player; return true;
+
+                case 4: matrix[1][0] = player; return true;
+
+                case 5: matrix[1][1] = player; return true;
+
+                case 6: matrix[1][2] = player; return true;
+
+                case 7: matrix[2][0] = player; return true;
+
+                case 8: matrix[2][1] = player; return true;
+
+                case 9: matrix[2][2] = player; return true;
+
+            }
+        }else{
+            return false;
+        }
+        return false;
     }
 }
