@@ -9,8 +9,7 @@ public class HashMapTask {
         mainIntro();
         String s = in.nextLine();
         outputIntro();
-        countLetters(s);
-
+        out.println(countLetters(s));
     }
     public static HashMap<Character, Integer> countLetters(String s) {
         HashMap<Character, Integer> map = new HashMap<>();
