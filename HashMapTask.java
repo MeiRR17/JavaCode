@@ -9,7 +9,14 @@ public class HashMapTask {
         mainIntro();
         String s = in.nextLine();
         outputIntro();
-        out.println(countLetters(s));
+        HashMap<Character, Integer> mapFinal = countLetters (s);
+        for (Character i : mapFinal.keySet()) {
+            if(mapFinal.get(i)>1) {
+                out.println("You have " + mapFinal.get(i) + " " + i + "'s in your word/sentence");
+            }else{
+                out.println("You have " + mapFinal.get(i) + " " + i + " in your word/sentence");
+            }
+        }
     }
     public static HashMap<Character, Integer> countLetters(String s) {
         HashMap<Character, Integer> map = new HashMap<>();
