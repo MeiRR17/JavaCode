@@ -12,9 +12,9 @@ public class CheckIfAllCharUniqueUsingHashMAp {
         out.println("in your current word has been used to make your word/sentence: ");
         boolean bFinal = countLetters(s);
             if(bFinal) {
-                out.println("Not all characters are unique.");
-            }else{
                 out.println("All characters are unique.");
+            }else{
+                out.println("Not all characters are unique.");
             }
     }
     public static boolean countLetters(String s) {
@@ -28,8 +28,10 @@ public class CheckIfAllCharUniqueUsingHashMAp {
             }
         }
         for (Character ch : map.keySet()) {
-            return map.get(ch) > 1;
+            if(map.get(ch) > 1){
+                return false;
+            }
         }
-        return false;
+        return true;
     }
 }
