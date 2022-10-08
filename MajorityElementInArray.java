@@ -1,4 +1,3 @@
-import java.util.HashMap;
 
 public class MajorityElementInArray {
     public static void main(String[] args) {
