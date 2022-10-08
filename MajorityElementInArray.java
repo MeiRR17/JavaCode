@@ -2,13 +2,11 @@
 public class MajorityElementInArray {
     public static void main(String[] args) {
         System.out.println();
-        int[] arr = new int[]{2, 2, 2, 0, 5, 5, 4, 3, 3};
+        int[] arr = new int[]{2, 2, 2, 0, 5, 5, 0, 3, 3};
         //if method turned nothing then there is no frequent else there is frequent
-        if (findFrequentNum(arr, arr.length) == 0) {
-            System.out.println("There is no frequent number in the current array.");
-        } else {
+
             System.out.println("The answer is: " + findFrequentNum(arr, arr.length) + ". Because this number is " + findCountOfFrequentNum(arr) + " times inside the array.");
-        }
+
     }
 
     public static int findFrequentNum(int[] arr, int i) {
@@ -32,9 +30,7 @@ public class MajorityElementInArray {
                 currentMax = arr[t];
             }
         }
-        if (max == currentMax) {
-            return 0;
-        }
+
         //returned the final max number
         return currentMax;
     }
