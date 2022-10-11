@@ -4,7 +4,7 @@ public class MajorityElementInArray {
         int[] arr = new int[]{0, 5, 2, 5, 5, 5, 0, 3, 3};
         //if method turned nothing then there is no frequent else there is frequent
 
-        System.out.println("The answer is: " + findFrequentNum(arr) + ". Because this number is " + findCountOfFrequentNum(arr) + " times inside the array.");
+        System.out.println("The answer is: " + findFrequentNum(arr) + ". Because this number is " + findCountOfFrequentNum(arr, findFrequentNum(arr)) + " times inside the array.");
 
     }
 
@@ -12,13 +12,12 @@ public class MajorityElementInArray {
         int count;
         int max = 0;
         int currentMax = 0;
-        int length = arr.length;
         //Nested for loop
-        for (int t = 0; t < length; t++) {
+        for (int j : arr) {
             count = 0;
-            for (int j = 0; j < length; j++) {
+            for (int i : arr) {
                 //if they equal then count will increase by 1
-                if (arr[t] == arr[j]) {
+                if (j == i) {
                     count++;
                 }
             }
@@ -26,7 +25,7 @@ public class MajorityElementInArray {
             if (max < count) {
                 max = count;
                 //saved the current max number in currentMax
-                currentMax = arr[t];
+                currentMax = j;
             }
         }
 
@@ -34,17 +33,14 @@ public class MajorityElementInArray {
         return currentMax;
     }
 
-    public static int findCountOfFrequentNum(int[] arrI) {
+    public static int findCountOfFrequentNum(int[] arrI, int ele) {
         //found count of the frequent number using nested for loop
         int count = 0;
-        for (int i : arrI) {
-            for (int j : arrI) {
-                if (i == j) {
-                    count++;
-                }
+        for (int j : arrI) {
+            if (j == ele) {
+                count++;
             }
-            return count;
         }
-        return 0;
+            return count;
     }
 }
