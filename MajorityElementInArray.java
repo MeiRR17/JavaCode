@@ -4,7 +4,7 @@ public class MajorityElementInArray {
         int[] arr = new int[]{0, 5, 2, 5, 5, 5, 0, 3, 3};
         //if method turned nothing then there is no frequent else there is frequent
         int frequentNum = findFrequentNum(arr);
-        System.out.println("The answer is: " + findFrequentNum(arr) + ". Because this number is " + findCountOfFrequentNum(arr, findFrequentNum(arr)) + " times inside the array.");
+        System.out.println("The answer is: " + frequentNum + ". Because this number is " + findCountOfFrequentNum(arr, frequentNum) + " times inside the array.");
 
     }
 

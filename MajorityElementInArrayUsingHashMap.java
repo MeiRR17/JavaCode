@@ -20,9 +20,9 @@ public class MajorityElementInArrayUsingHashMap {
                 map.put(i, 1);
             }
         for(int j : arrI){
-            if (max < map.getValue()){
-                current = map.getKey();
-                max = map.getValue();
+            if (max < map.get()){
+                current = map.get();
+                max = map.get();
             }
         }
 
