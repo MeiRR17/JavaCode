@@ -29,6 +29,6 @@ public class AnimalMain {
 
 InterfaceDogObject.dogSound();
         //System.out.println(dogObject.speak() + ".");
-//        System.out.println(catObject.speak() + ".");
+    System.out.println(catObject.speak() + ".");
     }
 }
