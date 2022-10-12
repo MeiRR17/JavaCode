@@ -5,7 +5,7 @@ public class FirstTask {
     public static void main(String[] args) {
         System.out.println(mergedTwoArrayListToHashMap());
     }
-    public static HashMap<ArrayList<String>, ArrayList<Integer>> mergedTwoArrayListToHashMap(){
+    public static HashMap<String, Integer> mergedTwoArrayListToHashMap(){
         ArrayList<String> firstOne = new ArrayList<>();
         firstOne.add("one");
         firstOne.add("two");
@@ -16,10 +16,10 @@ public class FirstTask {
         secondOne.add(2);
         secondOne.add(3);
 
-        HashMap<ArrayList<String>, ArrayList<Integer>> map = new HashMap<>();
-
-        map.put(firstOne, secondOne);
-
+        HashMap<String, Integer> map = new HashMap<>();
+        for(int i = 0;i<firstOne.size();i++) {
+            map.put(firstOne.get(i), secondOne.get(i));
+        }
         return map;
     }
 }
