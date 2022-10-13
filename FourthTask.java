@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class FourthTask {
@@ -19,14 +20,11 @@ public class FourthTask {
         map.put("B", 1);
         map.put("C", 1);
         map.put("D", 1);
-        int firstValue = 0;
-        for (String key : map.keySet()) {
-            firstValue = map.get(key);
-            break;
-        }
 
-        for (String key : map.keySet()) {
-            if (map.get(key) != firstValue) {
+        int firstValue = new ArrayList<>(map.values()).get(0);
+
+        for (int value : map.values()) {
+            if (value != firstValue) {
                 return false;
             }
         }
