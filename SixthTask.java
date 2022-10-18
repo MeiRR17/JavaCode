@@ -35,7 +35,7 @@ public class SixthTask {
         for (int i = 0; i < s.length(); i++) {
             if (map.containsKey(s.charAt(i))) {
                 count = map.get(s.charAt(i)) + 1;
-                map.put(s.charAt(i), ++count);
+                map.put(s.charAt(i), count);
             }
         }
         return map;
