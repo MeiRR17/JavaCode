@@ -6,21 +6,29 @@ public class EighthTask {
         System.out.println("Checking if there is letter d in current String: ");
         String s = in.nextLine();
         s = s.toLowerCase();
-        boolean b = checkIfThereIsTheLetterD(s);
 
-        if(b){
-            System.out.println("Yes");
-        }else{
-            System.out.println("No");
-        }
+        String output = outputNewString(s);
 
+        System.out.println(output);
     }
-    public static boolean checkIfThereIsTheLetterD(String s){
+    public static boolean checkIfThereIsLetter(String s, char ch){
             for (int i = 0; i < s.length(); i++){
-                if (s.charAt(i) == 'd'){
+                if (s.charAt(i) == ch){
                     return true;
                 }
             }
             return false;
+    }
+    public static String outputNewString(String s){
+        String newS = "";
+        char ch;
+        for(int i = 0;i<s.length();i++){
+            ch = s.charAt(i);
+            boolean b = checkIfThereIsLetter(s, ch);
+            if(b){
+                newS = newS + ch;
+            }
+        }
+        return newS;
     }
 }
