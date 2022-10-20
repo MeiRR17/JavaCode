@@ -25,8 +25,7 @@ public class EighthTask {
 
         for(int i = 0;i<s.length();i++){
             ch = s.charAt(i);
-            boolean b = checkIfThereIsLetter(s, ch);
-            if(!b){
+            if(!checkIfThereIsLetter(newS, ch)){
                 newS = newS + ch;
             }
         }
