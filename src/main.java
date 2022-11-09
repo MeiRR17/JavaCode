@@ -10,8 +10,7 @@ public class main {
 
         ArrayList<Character> playerMove = new ArrayList<>();
         String word = "Elephant";
-        int NumOfGuesses = 0;
-        int NumOfGuessesLeft = 7;
+        int numOfGuesses = 0;
 
         word = word.toLowerCase();
 
@@ -30,13 +29,13 @@ public class main {
             break;
         }
         if(!checkIfStringHasChar(playerMove, word)) {
-            NumOfGuessesLeft--;
+            numOfGuesses--;
         }
-        System.out.println("You have " + NumOfGuessesLeft + " guesses left.");
+        System.out.println("You have " + numOfGuesses + " guesses left.");
 
-            NumOfGuesses++;
+            numOfGuesses++;
         for(int index = 0;index<word.length();index++) {
-            if (NumOfGuesses == 7) {
+            if (numOfGuesses == 7) {
                 if (!checkIfStringHasChar(playerMove, word)) {
                     break;
                 }
@@ -74,5 +73,5 @@ public class main {
         }
         return (winningCount == currentWord.length());
     }
-
+//    static boolean
 }
