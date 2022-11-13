@@ -35,9 +35,11 @@ public class main {
         System.out.println();
 
         if(winningPoint(playerMove, word)){
-            System.out.println("You won the game!");
+            System.out.println("Great! You won the game!");
             break;
         }
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////
         if(!checkIfStringHasChar(playerMove, word)) {
             NumOfGuessesLeft--;
 
@@ -55,6 +57,7 @@ public class main {
             showChar(playerMove, word);
             System.out.println("' in the current word.");
         }
+        ////////////////////////////////////////////////////////////////////////////////////////////////
         NumOfGuesses++;
         if (NumOfGuesses == 8) {
             break;
@@ -62,7 +65,9 @@ public class main {
         System.out.println("You have " + NumOfGuessesLeft + " guesses left.");
 
         }
-        System.out.println("YOU LOST THE GAME :/");
+        if(!winningPoint(playerMove, word)) {
+            System.out.println("YOU LOST THE GAME :/");
+        }
     }
     static void resultOfPlayerMove(ArrayList <Character> playerMove, String currentWord) {
         for (int index = 0; index < currentWord.length(); index++) {
@@ -74,8 +79,8 @@ public class main {
         }
     }
     static boolean checkIfStringHasChar(ArrayList <Character> playerMove, String currentWord) {
-        for (int index = 0; index < currentWord.length(); index++) {
-            if (playerMove.contains(currentWord.charAt(index))) {
+        for(int i = 0;i<currentWord.length();i++){
+            if(playerMove.contains(currentWord.charAt(i))){
                 return true;
             }
         }
