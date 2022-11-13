@@ -3,7 +3,7 @@ package src;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class main {
+public class mainClass {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.println("Enter a char to reveal more the answer: ");
@@ -19,17 +19,16 @@ public class main {
 
 
         while(true) {String guess = in.nextLine();playerMove.add(guess.charAt(0));
-//        int checking = 0;
-//        while(guess.length()>1) {
-//            System.out.println("Couldn't figure what you typed, please enter only one character.");
-//                checking = 1;
-//                break;
-//
-//        }
-//        if(checking==1){
-//            continue;
-//        }
+        int checking = 0;
+        while(guess.length()>1) {
+            System.out.println("Couldn't figure what you typed, please enter only one character.");
+                checking = 1;
+                break;
 
+        }
+        if(checking==1){
+            continue;
+        }
 
         resultOfPlayerMove(playerMove, word);
         System.out.println();
