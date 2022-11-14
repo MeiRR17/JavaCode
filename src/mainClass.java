@@ -1,26 +1,48 @@
 package src;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class mainClass {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         ArrayList<Character> playerMove = new ArrayList<>();
-        String word = "dog";
+//        ArrayList<String> wordsFile = new ArrayList<>();
+//        wordsFile.add("abandon");
+//        wordsFile.add("dictionary");
+//        wordsFile.add("pineapple");
+//        wordsFile.add("lovely");
+//        wordsFile.add("bag");
+//        wordsFile.add("chair");
+//        wordsFile.add("shirt");
+//        wordsFile.add("trash can");
+//        wordsFile.add("door");
+//        wordsFile.add("possibility");
+
+
+//        String word = wordsFile.get(Math.random());
+//        System.out.println(word);
+
+        String [] strArray = randomWordAndDescription();
+
+        String word = strArray[0];
+        System.out.println(word);
         int NumOfGuessesLeft = 7;
         System.out.println("""
                 Playing Hangman:
                                 
-                Hangman is an old school favorite, a word game where the goal is simply to find the missing word or words.
+                Hangman is an old school favorite, a word game where the goal is simply to
+                find the missing word or words.
 
-                You will be presented with a number of blank spaces representing the missing letters you need to find.
+                You will be presented with a number of blank spaces representing the missing
+                letters you need to find.
 
                 Use the keyboard to guess a letter (I recommend starting with vowels).
 
-                If your chosen letter exists in the answer, then all places in the answer where that letter appear will be revealed.
+                If your chosen letter exists in the answer, then all places in the answer
+                where that letter appear will be revealed.
 
-                After you've revealed several letters, you may be able to guess what the answer is and fill in the remaining letters.
+                After you've revealed several letters, you may be able to guess what the
+                answer is and fill in the remaining letters.
 
                 Be warned, every time you guess a letter wrong you loose a life out of 7.
                 
@@ -28,9 +50,12 @@ public class mainClass {
                                 
                 PRESS Enter FOR PLAYING...""");
 
-        String start = in.nextLine();
+        in.nextLine();
+        System.out.println("Your current word's subject is " + strArray[1] + ".");
+        in.nextLine();
         System.out.println("Type a char to reveal more the answer:");
         resultOfPlayerMove(playerMove, word);
+
         System.out.println();
         while(true) {
             String guess = in.nextLine();
@@ -99,8 +124,28 @@ public class mainClass {
     static void showChar(ArrayList <Character> playerMove, String currentWord) {
         for (int i = 0; i < currentWord.length(); i++) {
             if (playerMove.contains(currentWord.charAt(i))) {
+
                 System.out.print(currentWord.charAt(i));
             }
         }
+    }
+    static String [] randomWordAndDescription() {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("puma", "Animals");
+        map.put("monkey", "Animals");
+        map.put("black", "Colors");
+        map.put("white", "Colors");
+        map.put("israel", "Countries");
+        map.put("georgia", "Countries");
+
+        Set<String> keySet = map.keySet();
+        ArrayList<String> keyList = new ArrayList<>(keySet);
+
+        int randomIndex = new Random().nextInt(keyList.size());
+        String [] returnSeveralNumbers = new String[2];
+        returnSeveralNumbers[0] = keyList.get(randomIndex);
+        returnSeveralNumbers[1] = map.get(returnSeveralNumbers[0]);
+
+        return returnSeveralNumbers;
     }
 }
