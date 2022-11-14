@@ -6,22 +6,6 @@ public class mainClass {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         ArrayList<Character> playerMove = new ArrayList<>();
-//        ArrayList<String> wordsFile = new ArrayList<>();
-//        wordsFile.add("abandon");
-//        wordsFile.add("dictionary");
-//        wordsFile.add("pineapple");
-//        wordsFile.add("lovely");
-//        wordsFile.add("bag");
-//        wordsFile.add("chair");
-//        wordsFile.add("shirt");
-//        wordsFile.add("trash can");
-//        wordsFile.add("door");
-//        wordsFile.add("possibility");
-
-
-//        String word = wordsFile.get(Math.random());
-//        System.out.println(word);
-
         String [] strArray = randomWordAndDescription();
 
         String word = strArray[0];
@@ -63,7 +47,7 @@ public class mainClass {
             int checking = 0;
 
             while(guess.length()>1) {
-                System.out.println("Couldn't figure what you typed, please enter only one character.");
+                System.out.println("Couldn't figure out what you typed, please enter only one character.");
                 checking = 1;
                 break;
             }
