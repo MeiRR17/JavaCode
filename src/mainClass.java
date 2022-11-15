@@ -41,51 +41,57 @@ public class mainClass {
         resultOfPlayerMove(playerMove, word);
 
         System.out.println();
-        while(true) {
-            String guess = in.nextLine();
-            playerMove.add(guess.charAt(0));
-            int checking = 0;
 
-            while(guess.length()>1) {
-                System.out.println("Couldn't figure out what you typed, please enter only one character.");
-                checking = 1;
-                break;
+            while (true) {
+                try {
+                String guess = in.nextLine();
+                playerMove.add(guess.charAt(0));
+                int checking = 0;
+
+                while (guess.length() > 1) {
+                    System.out.println("Couldn't figure out what you typed, please enter only one character.");
+                    checking = 1;
+                    break;
+                }
+                if (checking == 1) {
+                    continue;
+                }
+
+                resultOfPlayerMove(playerMove, word);
+                System.out.println();
+
+                if (winningPoint(playerMove, word)) {
+                    System.out.println("Wow! You won the game!");
+                    break;
+                }
+
+                if (!word.contains(guess)) {
+                    NumOfGuessesLeft--;
+
+                    if (NumOfGuessesLeft > 2) {
+                        System.out.println("Ohh, you missed that one, don't worry about it so much, you still have plenty of guesses left;)");
+                    } else if (NumOfGuessesLeft > 1) {
+                        System.out.println("Okay, seems like you could use a friend hand for this one!");
+                    } else if (NumOfGuessesLeft > 0) {
+                        System.out.println("Told you to use your friend...");
+                    } else if (NumOfGuessesLeft == 0) {
+                        System.out.println("Mhm, I think I had to bet for your losing.");
+                    }
+                } else {
+                    System.out.print("True! There is the character '");
+                    showChar(playerMove, word);
+                    System.out.println("' in the current word.");
+                }
+                if (NumOfGuessesLeft == -1) {
+                    System.out.println("YOU LOST THE GAME :/");
+                    break;
+                }
+                System.out.println("You have " + NumOfGuessesLeft + " guesses left.");
+            }catch(Exception e){
+                System.out.println("Type at least one character...");
             }
-            if(checking==1){
-                continue;
             }
 
-            resultOfPlayerMove(playerMove, word);
-            System.out.println();
-
-            if(winningPoint(playerMove, word)){
-                System.out.println("Wow! You won the game!");
-                break;
-            }
-
-            if(!word.contains(guess)) {
-                NumOfGuessesLeft--;
-
-            if (NumOfGuessesLeft > 2) {
-                System.out.println("Ohh, you missed that one, don't worry about it so much, you still have plenty of guesses left;)");
-            } else if (NumOfGuessesLeft > 1) {
-                System.out.println("Okay, seems like you could use a friend hand for this one!");
-            } else if (NumOfGuessesLeft > 0) {
-                System.out.println("Told you to use your friend...");
-            } else if (NumOfGuessesLeft == 0) {
-                System.out.println("Mhm, I think I had to bet for your losing.");
-            }
-            }else{
-                System.out.print("True! There is the character '");
-                showChar(playerMove, word);
-                System.out.println("' in the current word.");
-            }
-            if (NumOfGuessesLeft == -1) {
-                System.out.println("YOU LOST THE GAME :/");
-                break;
-            }
-            System.out.println("You have " + NumOfGuessesLeft + " guesses left.");
-        }
     }
     static void resultOfPlayerMove(ArrayList <Character> playerMove, String currentWord) {
         for (int index = 0; index < currentWord.length(); index++) {
