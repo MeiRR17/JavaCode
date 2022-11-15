@@ -10,9 +10,9 @@ public class anagram {
         String second = in.nextLine();
 
         if(checkIfStringsHaveSameLetters(first, second)){
-            System.out.println("Both Strings are anagram.");
+            System.out.println("Strings are anagrams.");
         }else{
-            System.out.println("Current Strings are not anagram.");
+            System.out.println("Current Strings are not anagrams.");
         }
     }
     static boolean checkIfStringsHaveSameLetters(String firstString, String secondString){
