@@ -14,7 +14,6 @@ public class anagram {
         }else{
             System.out.println("Current Strings are not anagram.");
         }
-
     }
     static boolean checkIfStringsHaveSameLetters(String firstString, String secondString){
         char []letters1 = firstString.toCharArray();
@@ -25,6 +24,5 @@ public class anagram {
         secondString = String.valueOf(letters2);
 
         return firstString.equals(secondString);
-
     }
 }
