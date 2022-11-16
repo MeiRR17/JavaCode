@@ -21,7 +21,7 @@ public class findFirstUniqueCharInAString {
                 map.put(c, 1);
             }
         }
-        for (int index = 0; index < sentence.length(); index++) {
+        for (int index = 0; index<sentence.length();index++) {
             if (map.get(sentence.charAt(index)) == 1)
                 return sentence.charAt(index);
         }
