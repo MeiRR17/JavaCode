@@ -1,8 +1,9 @@
 package src;
 
-
 import java.util.HashMap;
 import java.util.Scanner;
+
+
 
 public class findFirstUniqueCharInAString {
     public static void main(String[] args) {
@@ -22,9 +23,10 @@ public class findFirstUniqueCharInAString {
             }
         }
         for (int index = 0; index<sentence.length();index++) {
-            if (map.get(sentence.charAt(index)) == 1)
+            if (map.get(sentence.charAt(index)) == 1) {
                 return sentence.charAt(index);
+            }
         }
-         return ' ';
-        }
+        return ' ';
     }
+}
