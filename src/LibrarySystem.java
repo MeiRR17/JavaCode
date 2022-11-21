@@ -7,8 +7,23 @@ import java.util.Scanner;
 public class LibrarySystem {
     //you give menu to user add book delete book see books
     public static void main(String[] args) {
+        //create program for user notes when you run a
+        //program you should have option to add note to
+        // file or read notes
         Scanner in = new Scanner(System.in);
         System.out.println("Welcome to your neighborhood library! ");
+        writerAndReader(in);
+    }
+
+    public static void timeDelay(int timeInMs) {
+        try {
+            Thread.sleep(timeInMs);
+        }
+        catch(InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+    }
+    static void writerAndReader(Scanner in){
         while (true) {
             System.out.println("Do you want to borrow a book or restore a book?");
             String user = in.nextLine().toLowerCase();
@@ -23,10 +38,10 @@ public class LibrarySystem {
 
                     System.out.println("Got it, please type the book you wish to restore:");
                     String bookNameToRestore = in.nextLine();
-                    bookNameToRestore = bookNameToRestore + "\n";
                     writer.write(bookNameToRestore);
-                    writer.close();
                     System.out.println("Okay, your book has been restored.");
+
+                    writer.close();
                     timeDelay(500);
 
                     System.out.println("Type \"back\" if you want to backward.");
@@ -41,12 +56,12 @@ public class LibrarySystem {
                     }else{
                         System.out.println("Couldn't understand that...");
                     }
-
                 } catch (IOException e) {
                     System.out.println("There has been an error.");
                 }
             }else if(user.equals("borrow")){
-                System.out.println("From our data, it seems like these books are left: ");
+                System.out.println("From our data, it seems like the following books are left: ");
+                //data
                 try {
                     File myFile = new File("myFile.txt");
                     Scanner scannerReader = new Scanner(myFile);
@@ -61,24 +76,39 @@ public class LibrarySystem {
                     System.out.println("There has been an error.");
                     e.printStackTrace();
                 }
-                System.out.println("Please type the book you wish to borrow from the list above.");
-                String removeAnswer = in.nextLine();
-                removeLineFromFile(removeAnswer);
-                System.out.println("Okay, you can have it.");
-                timeDelay(500);
+                //
 
-                System.out.println("Type \"back\" if you want to backward.");
-                timeDelay(800);
-                System.out.println("If you do not want to do anything, type exit.");
-                String userAnswer = in.nextLine().toLowerCase();
-                if (userAnswer.equals("exit")) {
-                    System.out.println("Okay, have a great day.");
-                    break;
-                } else if(userAnswer.equals("back")){
-                    System.out.print("");
-                }else{
-                    System.out.println("Couldn't understand that...");
+
+                try {
+
+                    BufferedReader br = new BufferedReader(new FileReader("myFile.txt"));
+
+                    Scanner scannerReader = new Scanner(br);
+                    ArrayList<String> listOfLines = new ArrayList<>();
+                    String line = br.readLine();
+                    while (line != null) {
+                        listOfLines.add(line);
+                        line = br.readLine();
+                    }
+                    br.close();
+                    while (scannerReader.hasNextLine()) {
+                        String data = scannerReader.nextLine();
+                        System.out.println(data);
+                    }
+                    String wordToDelete = in.nextLine();
+                    for (String listOfLine : listOfLines) {
+                        if (wordToDelete.equals(listOfLine)) {
+
+                        }
+                    }
+                    scannerReader.close();
+                } catch (FileNotFoundException e) {
+                    System.out.println("There has been an error.");
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
+                break;
             }else{
                 System.out.println("Couldn't figure it out...");
             }
@@ -99,23 +129,30 @@ public class LibrarySystem {
             ArrayList<String> listOfLinesInFile = new ArrayList<>();
             String line = br.readLine();
             while (line != null) {
-                listOfLinesInFile.add(line); line = br.readLine();
+                listOfLinesInFile.add(line);
+                line = br.readLine();
             }
+            String currentLine = "";
+
             for(int i = 0;i<listOfLinesInFile.size();i++){
-                if()
-            }
-            String currentLine;
-            //Read from the original file and write to the new
-            //unless content matches data to be removed.
-
-            while ((currentLine = br.readLine()) != null) {
-
                 if (!currentLine.trim().equals(lineToRemove)) {
 
                     pw.println(currentLine);
                     pw.flush();
+
                 }
             }
+            //Read from the original file and write to the new
+            //unless content matches data to be removed.
+
+//            while ((currentLine = br.readLine()) != null) {
+//
+//                if (!currentLine.trim().equals(lineToRemove)) {
+//
+//                    pw.println(currentLine);
+//                    pw.flush();
+//                }
+//            }
             pw.close();
             br.close();
 
@@ -132,19 +169,5 @@ public class LibrarySystem {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-    }
-    static void timeDelay(int timeInMs) {
-        try {
-            Thread.sleep(timeInMs);
-        }
-        catch(InterruptedException ex) {
-            Thread.currentThread().interrupt();
-        }
-    }
-    static void writerAndReader(Scanner in){
-    }
-    static void checkWhatBooksAreAvailable(BufferedWriter writer, BufferedReader reader){
-    }
-    static void removeFromDataCurrentBookToBorrow(Scanner in){
     }
 }
