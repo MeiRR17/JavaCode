@@ -71,7 +71,6 @@ public class LibrarySystem {
             while ((currentLine = br.readLine()) != null) {
                 if (!currentLine.trim().equals(lineToRemove)) {
                     pw.println(currentLine);
-                    pw.flush();
                 }
             }
             System.out.println("Okay you can have it.");
