@@ -17,20 +17,16 @@ public class Library {
             String signInOrRegister = in.nextLine().toLowerCase();
             System.out.println(signInOrRegister);
             if (signInOrRegister.equals("sign in")) {
-                ArrayList<User> signIn = new ArrayList<>();
-                System.out.println("Enter your account username:");
-                String signFullName = in.nextLine();
                 System.out.println("Enter your account username:");
                 String signUserName = in.nextLine();
                 System.out.println("Enter your password: ");
                 String signPassword = in.nextLine();
 
-                signIn.add(new User(signFullName, signUserName, signPassword));
 
-                for(int index = 0;index< registered.size();index++){
-                    if(signIn==registered){
+                for (User user : registered) {
+                    if (signUserName.equals(user.getUsername())&&signPassword.equals(user.getPassword())) {
                         break;
-                    }else{
+                    } else {
                         System.out.println("Your password, username or fullName is not on the system, please try again.");
                     }
                 }
@@ -56,5 +52,6 @@ public class Library {
                 System.out.println("Could not understand that...");
             }
         }
+
     }
 }
