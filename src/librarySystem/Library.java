@@ -1,5 +1,6 @@
 package src.librarySystem;
 
+import java.io.*;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -8,29 +9,94 @@ public class Library {
     static void timeDelay() {
         try {
             Thread.sleep(800);
-        }
-        catch(InterruptedException ex) {
+        } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
     }
+
     public static int timeInDay() {
         LocalTime time = LocalTime.now();
         return time.getHour();
     }
-    public static void signInGreeting(String currentUserName){
-        if(timeInDay()>=12&&timeInDay()<17){
+
+    public static void signInGreeting(String currentUserName) {
+        if (timeInDay() >= 12 && timeInDay() < 17) {
             System.out.println("Good afternoon " + currentUserName + ".");
-        }else if(timeInDay()>=17&&timeInDay()<21){
+        } else if (timeInDay() >= 17 && timeInDay() < 21) {
             System.out.println("Good evening " + currentUserName + ".");
-        }else if(timeInDay()>=21&&timeInDay()<5){
+        } else if (timeInDay() >= 21 && timeInDay() < 5) {
             System.out.println("Good night " + currentUserName + ".");
-        }else{
+        } else {
             System.out.println("Good morning " + currentUserName + ".");
         }
     }
+    static void removeABookFromStock(String lineToRemove) {
+        try {
+            File fileTxt = new File("myFile.txt");
+            File assistFile = new File(fileTxt.getAbsolutePath() + ".tmp");
+
+            BufferedReader br = new BufferedReader(new FileReader(fileTxt));
+            PrintWriter pw = new PrintWriter(new FileWriter(assistFile));
 
 
+            String currentLine;
+            while ((currentLine = br.readLine()) != null) {
+                if (!currentLine.trim().equals(lineToRemove)) {
+                    pw.println(currentLine);
+                }
+            }
+            System.out.println("Okay you can have it.");
+            timeDelay();
+            pw.close();
+            br.close();
 
+            if (!fileTxt.delete()) {
+                System.out.println("Could not delete file");
+                return;
+            }
+            if (!assistFile.renameTo(fileTxt)) {
+                System.out.println("Could not rename file");
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+    static void showBookStock(){
+        System.out.println("From our data, it seems like these books are left: \n");
+        try {
+            File myFile = new File("myFile.txt");
+            Scanner scannerReader = new Scanner(myFile);
+
+
+            while (scannerReader.hasNextLine()) {
+                String data = scannerReader.nextLine();
+                System.out.println(data);
+            }
+            scannerReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("There has been an error.");
+            e.printStackTrace();
+        }
+    }
+    static void addBooks(String bookNameToRestore) {
+        FileWriter fw;
+        BufferedWriter bw;
+        PrintWriter pw;
+        try {
+            fw = new FileWriter("myFile.txt", true);
+            bw = new BufferedWriter(fw);
+            pw = new PrintWriter(bw);
+
+            bookNameToRestore = bookNameToRestore + "\n";
+            pw.write(bookNameToRestore);
+            pw.close();
+            System.out.println("Okay, your book has been restored.");
+
+        } catch (IOException e) {
+            System.out.println("There has been an error.");
+            e.printStackTrace();
+        }
+    }
 
 
     public static void main(String[] args) {
@@ -43,20 +109,17 @@ public class Library {
         System.out.println("(User/Admin)");
 
 
-
-
         boolean select = false;
         int counter = 3;
 
         String selectUser = in.nextLine();
         while (true) {
 
-            while(!selectUser.equals("user")) {
+            while (!selectUser.equals("user")) {
                 if (selectUser.equals("admin")) {
                     select = true;
                     break;
-                }
-            else {
+                } else {
                     System.out.println("Couldn't understand that...");
                 }
             }
@@ -71,7 +134,7 @@ public class Library {
 
                 boolean breakLoop = true;
                 for (User user : registered) {
-                    if (signUserName.equals(user.getUsername())&&signPassword.equals(user.getPassword())) {
+                    if (signUserName.equals(user.getUsername()) && signPassword.equals(user.getPassword())) {
                         breakLoop = false;
                         currentUserName = user.getFullName();
                         break;
@@ -79,7 +142,7 @@ public class Library {
                         System.out.println("Password or username is not correct, please try again.");
                     }
                 }
-                if(!breakLoop){
+                if (!breakLoop) {
                     break;
                 }
                 counter--;
@@ -106,9 +169,9 @@ public class Library {
             }
         }
 
-        while(true) {
+        while (true) {
             if (select) {//admin
-                System.out.println("You logged in successfully to an admin account!");
+                System.out.println("You logged in successfully to an admin type account!");
                 signInGreeting(currentUserName);
                 System.out.println("Do you want to add new books or remove particular books?");
                 String addOrRemove = in.nextLine().toLowerCase();
@@ -146,7 +209,7 @@ public class Library {
                             System.out.println("We couldn't find the book...");
                         }
                     }
-                    if(!breakLoop){
+                    if (!breakLoop) {
                         break;
                     }
                 } else {
@@ -155,18 +218,63 @@ public class Library {
 
 
             } else {
-                System.out.println("You logged in successfully to an user account!");
+                System.out.println("You logged in successfully to an user type account!");
                 signInGreeting(currentUserName);
-                System.out.println("Do you want to borrow a book or restore a book?");
+                while (true) {
+                    System.out.println("Do you want to borrow a book or restore a book?");
+                    String user = in.nextLine();
+                    if (user.equals("restore")) {
+                        System.out.println("Got it, please type the book you wish to restore:");
+                        String restore = in.nextLine();
+                        addBooks(restore);
 
+                        System.out.println("Type \"back\" if you want to backward.");
+
+                        timeDelay();
+
+                        System.out.println("If you want to do exit, type exit.");
+                        String userAnswer = in.nextLine().toLowerCase();
+                        if (userAnswer.equals("exit")) {
+                            System.out.println("Okay, have a great day.");
+                            break;
+                        } else if (userAnswer.equals("back")) {
+                            System.out.print("");
+                        } else {
+                            System.out.println("Couldn't understand that...");
+                        }
+                    } else if (user.equals("borrow")) {
+
+                        showBookStock();
+
+                        System.out.println("\nPlease type the book you wish to borrow from the list above.");
+
+                        String answer = in.nextLine();
+                        removeABookFromStock(answer);
+
+                        System.out.println("If you want to go backward, type back.");
+                        timeDelay();
+                        System.out.println("If you want to exit, type exit.");
+                        String userChoice = in.nextLine().toLowerCase();
+
+                        if (userChoice.equals("exit")) {
+                            System.out.println("Okay, have a great day.");
+                            break;
+                        } else if (userChoice.equals("back")) {
+                            System.out.print("");
+                        } else {
+                            System.out.println("I could not understand what you typed...");
+                        }
+                    } else {
+                        System.out.println("I could not understand what you typed...");
+                        timeDelay();
+                    }
+
+                }
 
             }
 
+
         }
 
-
-
-
     }
-
 }
