@@ -1,12 +1,12 @@
 package src.librarySystem;
 
-public class Books extends Library{
+public class Book extends Library{
     //book should have title author year number of pages
     private String title;
     private String author;
     private int yearOfRelease;
     private int numberOfPages;
-    public Books(String booksTitle, String booksAuthor, int booksYearOfRelease, int booksNumberOfPages){
+    public Book(String booksTitle, String booksAuthor, int booksYearOfRelease, int booksNumberOfPages){
         title = booksTitle;
         author = booksAuthor;
         yearOfRelease = booksYearOfRelease;

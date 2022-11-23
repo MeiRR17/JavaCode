@@ -35,6 +35,7 @@ public class Library {
 
     public static void main(String[] args) {
         ArrayList<User> registered = new ArrayList<>();
+        ArrayList<Book> addedBooks = new ArrayList<>();
         Scanner in = new Scanner(System.in);
         String currentUserName = "";
         System.out.println("welcome to the library.");
@@ -75,10 +76,9 @@ public class Library {
                         currentUserName = user.getFullName();
                         break;
                     } else {
-                        System.out.println("Your password, username or fullName is not on the system, please try again.");
+                        System.out.println("Password or username is not correct, please try again.");
                     }
                 }
-                //way out of loop if username & password was correct
                 if(!breakLoop){
                     break;
                 }
@@ -106,17 +106,63 @@ public class Library {
             }
         }
 
-        //admin  set
-        if(select){
-            System.out.println("You logged in successfully to an admin account!");
-            signInGreeting(currentUserName);
-            System.out.println("Do you want to add new books or remove particular books?");
-        }else{
-            System.out.println("You logged in successfully to an user account!");
-            signInGreeting(currentUserName);
-            System.out.println("Do you want to borrow a book or restore a book?");
-        }
+        while(true) {
+            if (select) {//admin
+                System.out.println("You logged in successfully to an admin account!");
+                signInGreeting(currentUserName);
+                System.out.println("Do you want to add new books or remove particular books?");
+                String addOrRemove = in.nextLine().toLowerCase();
 
+                if (addOrRemove.equals("add")) {
+                    System.out.println("Got it, first type the title of the book:");
+                    String bookTitle = in.nextLine();
+                    System.out.println("Got it, type the book's author:");
+                    String bookAuthor = in.nextLine();
+                    System.out.println("Okay, now type the year this book was published:");
+                    int bookPublishYear = in.nextInt();
+
+                    System.out.println("How many pages does this book has?");
+                    int bookNumOfPages = in.nextInt();
+
+                    addedBooks.add(new Book(bookTitle, bookAuthor, bookPublishYear, bookNumOfPages));
+
+                } else if (addOrRemove.equals("remove")) {
+
+                    //here should be list of all books
+
+                    System.out.println("Okay, please type the full name of the book from the list above:");
+                    String removeBookName = in.nextLine();
+                    System.out.println("Also, for safer removing, please type the year of release of the current book.");
+                    String removeBookYearOfRelease = in.nextLine();
+
+
+                    boolean breakLoop = true;
+                    for (Book book : addedBooks) {
+                        if (removeBookName.equals(book.getTitle()) && removeBookYearOfRelease.equals(String.valueOf(book.getYearOfRelease()))) {
+                            addedBooks.remove(book);
+                            breakLoop = false;
+                            break;
+                        } else {
+                            System.out.println("We couldn't find the book...");
+                        }
+                    }
+                    if(!breakLoop){
+                        break;
+                    }
+                } else {
+                    System.out.println("Couldn't understand what you typed...");
+                }
+
+
+            } else {
+                System.out.println("You logged in successfully to an user account!");
+                signInGreeting(currentUserName);
+                System.out.println("Do you want to borrow a book or restore a book?");
+
+
+            }
+
+        }
 
 
 
