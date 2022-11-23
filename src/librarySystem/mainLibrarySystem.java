@@ -1,9 +1,9 @@
-package src;
+package src.librarySystem;
 
 import java.io.*;
 import java.util.Scanner;
 
-public class LibrarySystem {
+public  class mainLibrarySystem {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.println("Welcome to your neighborhood library! ");
@@ -56,8 +56,8 @@ public class LibrarySystem {
                 System.out.println("I could not understand what you typed...");
                 timeDelay();
             }
-            }
         }
+    }
     static void removeABookFromStock(String lineToRemove) {
         try {
             File fileTxt = new File("myFile.txt");

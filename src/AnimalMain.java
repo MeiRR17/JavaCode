@@ -9,6 +9,7 @@ public class AnimalMain {
         Dog InterfaceDogObject = new Dog() {
         };
         Cat catObject = new Cat("Moshiko", true, 2, "Bombay", "black");
+        Cat catObject1 = new Cat("Moshiko", true, 2, "Bombay", "black");
 
         //printed Animal properties
 //        if(animalObject.isVegetarian()) {
