@@ -119,8 +119,6 @@ public class Library {
                 if (selectUser.equals("admin")) {
                     select = true;
                     break;
-                } else {
-                    System.out.println("Couldn't understand that...");
                 }
             }
             System.out.println("sign in/register");
@@ -169,6 +167,14 @@ public class Library {
             }
         }
 
+
+
+
+
+
+
+
+
         while (true) {
             if (select) {//admin
                 System.out.println("You logged in successfully to an admin type account!");
@@ -191,13 +197,15 @@ public class Library {
 
                 } else if (addOrRemove.equals("remove")) {
 
-                    //here should be list of all books
+                    showBookStock();
 
                     System.out.println("Okay, please type the full name of the book from the list above:");
                     String removeBookName = in.nextLine();
                     System.out.println("Also, for safer removing, please type the year of release of the current book.");
                     String removeBookYearOfRelease = in.nextLine();
 
+                    String removeABook = in.nextLine();
+                    removeABookFromStock(removeABook);
 
                     boolean breakLoop = true;
                     for (Book book : addedBooks) {
@@ -217,7 +225,7 @@ public class Library {
                 }
 
 
-            } else {
+            } else {//user
                 System.out.println("You logged in successfully to an user type account!");
                 signInGreeting(currentUserName);
                 while (true) {
