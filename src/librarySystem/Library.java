@@ -61,15 +61,16 @@ public class Library {
             ex.printStackTrace();
         }
     }
-    static void showBookStock(){
+        static void showBookStock(Object users){
+
         System.out.println("From our data, it seems like these books are left: \n");
         try {
-            File myFile = new File("myFile.txt");
+            File myFile = new File("people.txt");
             Scanner scannerReader = new Scanner(myFile);
 
 
             while (scannerReader.hasNextLine()) {
-                String data = scannerReader.nextLine();
+                Object data = scannerReader.nextLine();
                 System.out.println(data);
             }
             scannerReader.close();
@@ -78,17 +79,17 @@ public class Library {
             e.printStackTrace();
         }
     }
-    static void addBooks(String bookNameToRestore) {
+    static void addUsersToAFile(Object users) {
         FileWriter fw;
         BufferedWriter bw;
         PrintWriter pw;
         try {
-            fw = new FileWriter("myFile.txt", true);
+            fw = new FileWriter("people.txt", true);
             bw = new BufferedWriter(fw);
             pw = new PrintWriter(bw);
 
-            bookNameToRestore = bookNameToRestore + "\n";
-            pw.write(bookNameToRestore);
+            users = users + "\n";
+            pw.write(String.valueOf(users));
             pw.close();
             System.out.println("Okay, your book has been restored.");
 
@@ -97,41 +98,75 @@ public class Library {
             e.printStackTrace();
         }
     }
+    static void writeObjectInsideFile(User user) {
+
+        try {
+
+            FileOutputStream fileOut = new FileOutputStream("users.txt");
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            objectOut.writeObject(user);
+            objectOut.close();
+            System.out.println("Okay, your account has been created.");
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
+
 
 
     public static void main(String[] args) {
+
         ArrayList<User> registered = new ArrayList<>();
         ArrayList<Book> addedBooks = new ArrayList<>();
         Scanner in = new Scanner(System.in);
         String currentUserName = "";
         System.out.println("welcome to the library.");
-        System.out.println("Select the account type you would like to use");
-        System.out.println("(User/Admin)");
+
 
 
         boolean select = false;
         int counter = 3;
 
-        String selectUser = in.nextLine();
         while (true) {
 
+            System.out.println("Select the account type you would like to use");
+            System.out.println("(User/Admin)");
+
+
+
+            String selectUser = in.nextLine();
             while (!selectUser.equals("user")) {
                 if (selectUser.equals("admin")) {
                     select = true;
                     break;
                 }
+                System.out.println("Couldn't understand that...");
+                selectUser = in.nextLine();
+                timeDelay();
             }
+
+
+
+
+
             System.out.println("sign in/register");
             String signInOrRegister = in.nextLine().toLowerCase();
+
+
+
             if (signInOrRegister.equals("sign in")) {
-
-                System.out.println("Enter your account username:");
-                String signUserName = in.nextLine();
-                System.out.println("Enter your password: ");
-                String signPassword = in.nextLine();
-
                 boolean breakLoop = true;
+
+
+
                 for (User user : registered) {
+                    System.out.println("Enter your account username:");
+                    String signUserName = in.nextLine();
+                    System.out.println("Enter your password: ");
+                    String signPassword = in.nextLine();
                     if (signUserName.equals(user.getUsername()) && signPassword.equals(user.getPassword())) {
                         breakLoop = false;
                         currentUserName = user.getFullName();
@@ -159,16 +194,15 @@ public class Library {
 
                 registered.add(new User(registerFullName, registerUserName, registerPassword));
 
-                System.out.println("Okay, your account has been created.");
+                addUsersToAFile(String.valueOf(registered.get(registered.size()-1)));
+
+
 
             } else {
                 System.out.println("Could not understand what you typed...");
                 timeDelay();
             }
         }
-
-
-
 
 
 
@@ -197,7 +231,7 @@ public class Library {
 
                 } else if (addOrRemove.equals("remove")) {
 
-                    showBookStock();
+//                    showBookStock();
 
                     System.out.println("Okay, please type the full name of the book from the list above:");
                     String removeBookName = in.nextLine();
@@ -234,7 +268,16 @@ public class Library {
                     if (user.equals("restore")) {
                         System.out.println("Got it, please type the book you wish to restore:");
                         String restore = in.nextLine();
-                        addBooks(restore);
+//                        addBooks(restore);
+
+
+
+
+
+
+
+
+
 
                         System.out.println("Type \"back\" if you want to backward.");
 
@@ -252,7 +295,10 @@ public class Library {
                         }
                     } else if (user.equals("borrow")) {
 
-                        showBookStock();
+//                        showBookStock();
+
+
+
 
                         System.out.println("\nPlease type the book you wish to borrow from the list above.");
 

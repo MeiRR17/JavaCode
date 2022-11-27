@@ -6,7 +6,7 @@ public class Book extends Library{
     private String author;
     private int yearOfRelease;
     private int numberOfPages;
-    public Book(String booksTitle, String booksAuthor, int booksYearOfRelease, int booksNumberOfPages){
+    public Book (String booksTitle, String booksAuthor, int booksYearOfRelease, int booksNumberOfPages){
         title = booksTitle;
         author = booksAuthor;
         yearOfRelease = booksYearOfRelease;
