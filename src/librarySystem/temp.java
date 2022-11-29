@@ -5,8 +5,10 @@ import java.io.*;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.spi.AbstractResourceBundleProvider;
 
 public class temp {
+
     public static void main(String[] args) {
         ArrayList<User> registered = new ArrayList<>();
         ArrayList<Book> addedBooks = new ArrayList<>();
@@ -21,31 +23,20 @@ public class temp {
             System.out.println("Select the account you want to log in to.\n(User/Admin)");
             String selectUserType = in.nextLine().toLowerCase();
             if (selectUserType.equals("user")) {
+                System.out.println("(sign in/register)");
+                String signInOrRegister = in.nextLine().toLowerCase();
                 while (true) {
-                    System.out.println("(sign in/register)");
-                    String signInOrRegister = in.nextLine().toLowerCase();
-                    boolean breakLoop = true;
+                    boolean breakFromWhileLoop = false;
                     if (signInOrRegister.equals("sign in")) {
                         int userCounter = 3;
-                        while (true) {
-                            System.out.println("Enter your account username:");
-                            String signUserName = in.nextLine();
-                            System.out.println("Enter your password: ");
-                            String signPassword = in.nextLine();
-                            for (User user : registered) {
-                                if (signUserName.equals(user.getUsername()) && signPassword.equals(user.getPassword())) {
-                                    currentUserName = user.getFullName();
-                                    break;
-                                } else {
-                                    System.out.println("Password or username is not correct, please try again.");
-                                }
-                            }
-                            userCounter--;
+                        System.out.println("Enter your account username:");
+                        String signUserName = in.nextLine();
+                        System.out.println("Enter your password: ");
+                        String signPassword = in.nextLine();
 
-                            if (userCounter == 0) {
-                                System.out.println("Your account has been locked due to too many attempts...\nPlease try again later.");
-                                System.exit(400);
-                            }
+                        signInUser(registered, signUserName, signPassword, currentUserName, userCounter);
+                        if(signInUser(registered, signUserName, signPassword, currentUserName, userCounter)){
+                            break;
                         }
                     } else if (signInOrRegister.equals("register")) {
                         System.out.println("Enter your full name: ");
@@ -55,158 +46,130 @@ public class temp {
                         System.out.println("Enter a password: ");
                         String registerPassword = in.nextLine();
 
-                        registered.add(new User(registerFullName, registerUserName, registerPassword));
+                        addUser(registered, registerFullName, registerUserName, registerPassword);
+                        signInOrRegister = in.nextLine().toLowerCase();
 
-                        addObjectToAFile(registered.get(registered.size() - 1), "people.txt");
-                        System.out.println("Your user has been added to the system.");
-                        timeDelay();
-                        continue;
                     } else {
                         System.out.println("Could not understand what you typed...");
-                        timeDelay();
-                        signInOrRegister = in.nextLine().toLowerCase();
-                    }
-
-
-                    System.out.println("You logged in successfully to an user type account!");
-                    signInGreeting(currentUserName);
-                    while (true) {
-                        System.out.println("Do you want to borrow a book or restore a book?");
-                        String user = in.nextLine();
-                        if (user.equals("restore")) {
-                            System.out.println("Got it, please type the book you wish to restore:");
-                            String restore = in.nextLine();
-//                        addBooks(restore);
-
-
-
-                            System.out.println("Type \"back\" if you want to backward.");
-
-                            timeDelay();
-
-                            System.out.println("If you want to do exit, type exit.");
-                            String userAnswer = in.nextLine().toLowerCase();
-                            if (userAnswer.equals("exit")) {
-                                System.out.println("Okay, have a great day.");
-                                break;
-                            } else if (userAnswer.equals("back")) {
-                                System.out.print("");
-                            } else {
-                                System.out.println("Couldn't understand that...");
-                            }
-                        } else if (user.equals("borrow")) {
-
-//                        showBookStock();
-
-
-                            System.out.println("\nPlease type the book you wish to borrow from the list above.");
-
-                            String answer = in.nextLine();
-                            removeAnObjectFromAFile(answer, "people.txt");
-
-                            System.out.println("If you want to go backward, type back.");
-                            timeDelay();
-                            System.out.println("If you want to exit, type exit.");
-                            String userChoice = in.nextLine().toLowerCase();
-
-                            if (userChoice.equals("exit")) {
-                                System.out.println("Okay, have a great day.");
-                                break;
-                            } else if (userChoice.equals("back")) {
-                                System.out.print("");
-                            } else {
-                                System.out.println("I could not understand what you typed...");
-                            }
-                        } else {
-                            System.out.println("I could not understand what you typed...");
-                            timeDelay();
-                        }
                     }
                 }
 
 
-            } else if (selectUserType.equals("admin")) {
-                while (true) {
-                    File file = new File("admin.txt");
-                    try {
-                        BufferedReader reader = new BufferedReader(new FileReader(file));
-                        ArrayList<String> developerCode = new ArrayList<>();
-                        String line = reader.readLine();
-                        while (line != null) {
-                            developerCode.add(line);
-                            line = reader.readLine();
 
-                            reader.close();
+                    while (true) {
+                        System.out.println("Do you want to borrow a book or restore a book?");
+                        String user = in.nextLine();
 
-                            System.out.println("Enter an engineer code.");
-                            int adminCounter = 3;
-                            for (String code : developerCode) {
-                                String engineerCode = in.nextLine();
-                                if (engineerCode.equals(code)) {
-                                    break;
-                                } else {
-                                    System.out.println("Engineer code is not on the system.");
-                                    adminCounter--;
-                                    if (adminCounter == 0) {
-                                        System.out.println("Too many attempts, please try again later...");
-                                        System.exit(400);
-                                    }
-                                }
+
+                            if (user.equals("restore")) {
+
+                                String userAnswer = in.nextLine().toLowerCase();
+                                returnBook(userAnswer);
+
+
+
+
+
+
+
+
+
+                            } else if (user.equals("borrow")) {
+
+//                        showBookStock();
+
+
+
+
+
+                            } else {
+                                System.out.println("I could not understand what you typed...");
                             }
-                        }
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
                     }
 
 
-                    System.out.println("(books/users)");
-                    String controlOption = in.nextLine().toLowerCase();
+            } else if (selectUserType.equals("admin")) {
                     while (true) {
-                        if (controlOption.equals("books") || controlOption.equals("book")) {
-                            System.out.println("(add/remove)");
-                            while (true) {
-                                String addOrRemoveBooks = in.nextLine().toLowerCase();
-                                if (addOrRemoveBooks.equals("add") || addOrRemoveBooks.equals("add books")) {
-                                    System.out.println("Enter the book title: ");
-                                    String title = in.nextLine();
-                                    System.out.println("Enter book's author name: ");
-                                    String authorsName = in.nextLine();
-                                    System.out.println("Enter the year of release: ");
-                                    int releaseYear = in.nextInt();
-                                    System.out.println("Enter the number of pages:");
-                                    int numberOfPages = in.nextInt();
+                        File file = new File("admin.txt");
+                        try {
+                            BufferedReader reader = new BufferedReader(new FileReader(file));
+                            ArrayList<String> developerCode = new ArrayList<>();
+                            String line = reader.readLine();
+                            while (line != null) {
+                                developerCode.add(line);
+                                line = reader.readLine();
 
-                                    addedBooks.add(new Book(title, authorsName, releaseYear, numberOfPages));
-                                    addObjectToAFile(String.valueOf(addedBooks.get(addedBooks.size() - 1)), "availableBooks.txt");
-                                    System.out.println("The book has been added to the system.");
-                                    timeDelay();
-                                    continue;
-                                } else if (addOrRemoveBooks.equals("remove") || addOrRemoveBooks.equals("remove books")) {
-                                    System.out.println("Enter the name of the book you want to delete:");
-                                    String nameOfBookToDelete = in.nextLine();
-                                    for (int i = 0; i < addedBooks.size(); i++) {
-                                        if (nameOfBookToDelete.equals(addedBooks.get(i).getTitle())) {
-                                            addedBooks.remove(i);
-                                            removeAnObjectFromAFile(nameOfBookToDelete, "books.txt");
+                                reader.close();
+
+                                System.out.println("Enter an engineer code.");
+                                int adminCounter = 3;
+                                for (String code : developerCode) {
+                                    String engineerCode = in.nextLine();
+                                    if (engineerCode.equals(code)) {
+                                        break;
+                                    } else {
+                                        System.out.println("Engineer code is not on the system.");
+                                        adminCounter--;
+                                        if (adminCounter == 0) {
+                                            System.out.println("Too many attempts, please try again later...");
+                                            System.exit(400);
                                         }
                                     }
-                                } else {
-                                    System.out.println("Couldn't understand that...");
-                                    addOrRemoveBooks = in.nextLine().toLowerCase();
                                 }
                             }
-                        } else if (controlOption.equals("users") || controlOption.equals("user")) {
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
 
-                        } else {
-                            System.out.println("Couldn't understand that...");
-                            controlOption = in.nextLine().toLowerCase();
+
+                        System.out.println("(books/users)");
+                        String controlOption = in.nextLine().toLowerCase();
+                        while (true) {
+                            if (controlOption.equals("books") || controlOption.equals("book")) {
+                                System.out.println("(add/remove)");
+                                while (true) {
+                                    String addOrRemoveBooks = in.nextLine().toLowerCase();
+                                    if (addOrRemoveBooks.equals("add") || addOrRemoveBooks.equals("add books")) {
+                                        System.out.println("Enter the book title: ");
+                                        String title = in.nextLine();
+                                        System.out.println("Enter book's author name: ");
+                                        String authorsName = in.nextLine();
+                                        System.out.println("Enter the year of release: ");
+                                        int releaseYear = in.nextInt();
+                                        System.out.println("Enter the number of pages:");
+                                        int numberOfPages = in.nextInt();
+
+                                        addedBooks.add(new Book(title, authorsName, releaseYear, numberOfPages));
+                                        addObjectToAFile(String.valueOf(addedBooks.get(addedBooks.size() - 1)), "availableBooks.txt");
+                                        System.out.println("The book has been added to the system.");
+                                        timeDelay();
+                                        continue;
+                                    } else if (addOrRemoveBooks.equals("remove") || addOrRemoveBooks.equals("remove books")) {
+                                        System.out.println("Enter the name of the book you want to delete:");
+                                        String nameOfBookToDelete = in.nextLine();
+                                        for (int i = 0; i < addedBooks.size(); i++) {
+                                            if (nameOfBookToDelete.equals(addedBooks.get(i).getTitle())) {
+                                                addedBooks.remove(i);
+                                                removeAnObjectFromAFile(nameOfBookToDelete, "books.txt");
+                                            }
+                                        }
+                                    } else {
+                                        System.out.println("Couldn't understand that...");
+                                        addOrRemoveBooks = in.nextLine().toLowerCase();
+                                    }
+                                }
+                            } else if (controlOption.equals("users") || controlOption.equals("user")) {
+
+                            } else {
+                                System.out.println("Couldn't understand that...");
+                                controlOption = in.nextLine().toLowerCase();
+                            }
                         }
                     }
                 }
             } else {
                 System.out.println("Could not understand that...");
-                selectUserType = in.nextLine().toLowerCase();
-            }
+
         }
     }
 
@@ -233,7 +196,48 @@ public class temp {
 
 
 
+static void borrowBook(){
+    while (true) {
+        System.out.println("\nPlease type the book you wish to borrow from the list above.");
 
+        String answer = in.nextLine();
+        removeAnObjectFromAFile(answer, "people.txt");
+
+        System.out.println("If you want to go backward, type back.");
+        timeDelay();
+        System.out.println("If you want to exit, type exit.");
+        String userChoice = in.nextLine().toLowerCase();
+
+        if (userChoice.equals("exit")) {
+            System.out.println("Okay, have a great day.");
+            break;
+        } else if (userChoice.equals("back")) {
+            System.out.print("");
+        } else {
+            System.out.println("I could not understand what you typed...");
+        }
+    }
+}
+    static void returnBook(String userAnswer, String userReturnsBook) {
+        System.out.println("Got it, please type the title of the book you wish to restore:");
+
+        while (true) {
+
+            System.out.println("Type \"back\" if you want to backward.");
+
+            timeDelay();
+
+            System.out.println("If you want to do exit, type exit.");
+            if (userAnswer.equals("exit")) {
+                System.out.println("Okay, have a great day.");
+                break;
+            } else if (userAnswer.equals("back")) {
+                System.out.print("");
+            } else {
+                System.out.println("Couldn't understand that...");
+            }
+        }
+    }
     static void timeDelay() {
         try {
             Thread.sleep(800);
@@ -340,5 +344,35 @@ public class temp {
             ex.printStackTrace();
         }
     }
+    static void addUser(ArrayList<User> registered, String registerFullName, String registerUserName, String registerPassword){
+        registered.add(new User(registerFullName, registerUserName, registerPassword));
 
+        addObjectToAFile(registered.get(registered.size() - 1), "people.txt");
+        System.out.println("Your user has been added to the system.");
+
+
+    }
+    static boolean signInUser(ArrayList<User> registered, String signUserName, String signPassword, String currentUserName, int userCounter){
+        boolean exitPoint = false;
+        while(!exitPoint) {
+            for (User user : registered) {
+                if (signUserName.equals(user.getUsername()) && signPassword.equals(user.getPassword())) {
+                    currentUserName = user.getFullName();
+                    break;
+                } else {
+                    System.out.println("Password or username is not correct, please try again.");
+                }
+                userCounter--;
+                if (userCounter == 0) {
+                    System.out.println("Your account has been locked due to too many attempts...\nPlease try again later.");
+                    System.exit(400);
+                }
+                exitPoint = true;
+            }
+
+        }
+        System.out.println("You logged in successfully to an user type account!");
+        signInGreeting(currentUserName);
+        return true;
+    }
 }
