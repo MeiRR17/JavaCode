@@ -64,7 +64,7 @@ public class temp {
                             if (user.equals("restore")) {
 
                                 String userAnswer = in.nextLine().toLowerCase();
-                                returnBook(userAnswer);
+//                                returnBook(userAnswer);
 
 
 
@@ -167,11 +167,10 @@ public class temp {
                         }
                     }
                 }
-            } else {
-                System.out.println("Could not understand that...");
+          } //else {
+//                System.out.println("Could not understand that...");
 
         }
-    }
 
 
 
@@ -196,17 +195,16 @@ public class temp {
 
 
 
-static void borrowBook(){
+
+static void borrowBook(String answer, String userChoice){
     while (true) {
         System.out.println("\nPlease type the book you wish to borrow from the list above.");
 
-        String answer = in.nextLine();
         removeAnObjectFromAFile(answer, "people.txt");
 
         System.out.println("If you want to go backward, type back.");
         timeDelay();
         System.out.println("If you want to exit, type exit.");
-        String userChoice = in.nextLine().toLowerCase();
 
         if (userChoice.equals("exit")) {
             System.out.println("Okay, have a great day.");
