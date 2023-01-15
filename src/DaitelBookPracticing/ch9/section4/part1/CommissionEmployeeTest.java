@@ -1,4 +1,4 @@
-package src.DaitelBookPracticing.ch9.section4;
+package src.DaitelBookPracticing.ch9.section4.part1;
 
 // Fig. 9.5: CommissionEmployeeTest.java
 // CommissionEmployee class test program.
