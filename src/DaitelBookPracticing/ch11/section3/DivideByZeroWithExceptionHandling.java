@@ -1,8 +1,6 @@
 package src.DaitelBookPracticing.ch11.section3;
 // Fig. 11.3: DivideByZeroWithExceptionHandling.java// Handling ArithmeticExceptions and InputMismatchExceptions.
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
+import java.util.InputMismatchException;import java.util.Scanner;
 public class DivideByZeroWithExceptionHandling
 {
     // demonstrates throwing an exception when a divide-by-zero occurs

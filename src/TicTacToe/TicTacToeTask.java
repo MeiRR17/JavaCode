@@ -232,8 +232,6 @@ public class TicTacToeTask {
                 case 9: matrix[2][2] = player; return true;
 
             }
-        }else{
-            return false;
         }
         return false;
     }
